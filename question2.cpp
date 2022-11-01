@@ -56,15 +56,13 @@ void Stack<T>::push(T k)
     array.push_back(k);
 }
 
-// Method 8
-// To check if the stack is empty
 template <class T>
 bool Stack<T>::empty()
 {
     return array.size() == 0;
 }
 
-// Method 10
+
 template <class T>
 bool Stack<T>::pop()
 {
@@ -74,16 +72,35 @@ bool Stack<T>::pop()
     return true;
 }
 
-// Method 11
+
 template <class T>
 T Stack<T>::top()
 {
     return array[array.size() - 1];
 }
 
-// Method 11
+
 template <class T>
 T Stack<T>::size()
 {
     return array.size();
+}
+int main()
+{
+    Stack<int> integer_stack;
+    Stack<int> integer_stack2;
+
+    integer_stack.push(1);
+    integer_stack.push(2);
+    integer_stack2.push(3);
+    integer_stack2.push(4);
+    std::cout << integer_stack.top();
+    std::cout << "\n";
+    integer_stack.pop();
+    std::cout << integer_stack.top();
+    std::cout << "\n";
+    Stack<int> a = integer_stack + integer_stack2;
+    a.pop();
+    std::cout << a.top();
+    return 0;
 }
