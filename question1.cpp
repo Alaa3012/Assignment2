@@ -37,4 +37,33 @@ private:
             return 0;
         return 1 + treeSize(root->left) + treeSize(root->right);
     }
+
+    // require a pointer to the Tree object
+    //  print in postOrder, preOrder, inOrder traversals
+    void postOrderPrint(treeNode<T> *root)
+    {
+        if (root == NULL)
+            return;
+        postOrderPrint(root->left);
+        postOrderPrint(root->right);
+        cout << *(root->data);
+    }
+    void inOrderPrint(treeNode<T> *root)
+    {
+        if (root == NULL)
+            return;
+        inOrderPrint(root->left);
+        cout << *(root->data);
+        inOrderPrint(root->right);
+    }
+
+    void preOrderPrint(treeNode<T> *root)
+    {
+        if (root == NULL)
+            return;
+        cout << *(root->data);
+        preOrderPrint(root->left);
+        preOrderPrint(root->right);
+    }
+
 };
