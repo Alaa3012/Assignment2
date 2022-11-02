@@ -165,3 +165,22 @@ public:
         return treeSize(nodeslist[0]);
     }
 };
+
+int main()
+{
+    tree<int> tree;
+    tree.addNode(4);
+    tree.addNode(5);
+    tree.addNode(6);
+    tree.addNode(7);
+    tree.addNode(10);
+    cout << tree.treeSize() << endl;
+    tree.addNode(12);
+    cout << endl;
+    tree.postOrderPrint();
+    cout << endl;
+    tree.inOrderPrint();
+    cout << endl;
+    tree.preOrderPrint();
+    return 0;
+}
