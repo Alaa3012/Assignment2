@@ -16,3 +16,25 @@ struct treeNode
     struct treeNode *left;
     struct treeNode *right;
 };
+template <class T>
+struct tree
+{
+
+private:
+    vector<treeNode<T> *> nodeslist;
+
+    // takes int as a parameter
+    // returns the parentIndex
+    int parentIndex(int node)
+    {
+        return (node - 1) / 2;
+    }
+    // takes a pointer to the root of the tree as parameters
+    // returns an int representing the Size of the tree
+    int treeSize(treeNode<T> *root)
+    {
+        if (root == NULL)
+            return 0;
+        return 1 + treeSize(root->left) + treeSize(root->right);
+    }
+};
