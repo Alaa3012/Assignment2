@@ -66,4 +66,102 @@ private:
         preOrderPrint(root->right);
     }
 
+public:
+    // takes a T object as paramteter
+    //  add the obejct T to the tree
+    void addNode(T data)
+    {
+        int *a = new int;
+        *a = data;
+        treeNode<T> *temp = new treeNode<T>;
+        *temp = {a, NULL, NULL};
+        int index;
+        for (int i = 0; i < nodeslist.size(); ++i)
+        {
+            if (nodeslist[i] == NULL)
+            {
+                index = i;
+                break;
+            }
+            else
+                index = i + 1;
+        }
+        if (index < nodeslist.size())
+            nodeslist[index] = temp;
+        else
+            nodeslist.push_back(temp);
+        if (index != 0)
+        {
+            int parent = parentindexex(index);
+            if (nodeslist[parent]->left != NULL)
+                nodeslist[parent]->right = temp;
+            else
+                nodeslist[parent]->left = temp;
+        }
+    }
+
+    // takes a T object as parameter
+    // deletes the node T
+    void deleteNode(T data)
+    {
+        int index = -1;
+        for (int i = 0; i < nodeslist.size(); i++)
+        {
+            if (nodeslist[i] != NULL && *(nodeslist[i]->data) == data)
+            {
+                index = i;
+            }
+        }
+        if (index != -1 && nodeslist[index]->left == NULL && nodeslist[index]->right == NULL)
+        {
+            treeNode<T> * temp = nodeslist[index];
+            nodeslist[index] = NULL;
+            if (index != 0)
+            {
+                int parent = parentindexex(index);
+                if (index % 2 == 0)
+                    nodeslist[parent]->right = NULL;
+                else
+                    nodeslist[parent]->left = NULL;
+            }
+            free(temp);
+        }
+        else
+            cout << "CANNOT DELETE NODE" << endl;
+    }
+
+    // requires T object as parameter
+    // returns the size of subtree
+    int subtreeSize(T data)
+    {
+        int index = -1;
+        for (int i = 0; i < nodeslist.size(); i++)
+        {
+            if (nodeslist[i] != NULL && *(nodeslist[i]->data) == data)
+            {
+                index = i;
+            }
+        }
+        if (index != -1)
+            return treeSize(nodeslist[index]);
+        return 0;
+    }
+    void postOrderPrint()
+    {
+        postOrderPrint(nodeslist[0]);
+    }
+    void inOrderPrint()
+    {
+        inOrderPrint(nodeslist[0]);
+    }
+    void preOrderPrint()
+    {
+        preOrderPrint(nodeslist[0]);
+    }
+    int treeSize()
+    {
+        if (nodeslist.size() == 0)
+            return 0;
+        return treeSize(nodeslist[0]);
+    }
 };
